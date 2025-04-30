@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\SaleController;
 use App\Http\Controllers\StatsController;
 
 
@@ -17,6 +18,10 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // CRUD de clientes
     Route::apiResource('customers', CustomerController::class);
+
+    // CRUD de vendas (somente index e store)
+    Route::apiResource('sales', SaleController::class)
+         ->only(['index', 'store']);
 
     // Estatísticas de vendas
     Route::get('stats/daily-sales',   [StatsController::class, 'dailySales']);

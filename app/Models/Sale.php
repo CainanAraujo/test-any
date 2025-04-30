@@ -10,6 +10,11 @@ class Sale extends Model
 {
     use HasFactory;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int,string>
+     */
     protected $fillable = [
         'customer_id',
         'amount',
@@ -17,7 +22,19 @@ class Sale extends Model
     ];
 
     /**
-     * Relacionamento: esta venda pertence a um cliente.
+     * The attributes that should be cast to native types.
+     *
+     * @var array<string,string>
+     */
+    protected $casts = [
+        'amount'  => 'decimal:2',
+        'sold_at' => 'datetime',
+    ];
+
+    /**
+     * Define the relationship: this sale belongs to a customer.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function customer(): BelongsTo
     {
