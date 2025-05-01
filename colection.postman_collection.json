@@ -1,0 +1,398 @@
+{
+	"info": {
+		"_postman_id": "56ffe31c-dfc8-46e2-9804-9bfb77fec3c6",
+		"name": "colection",
+		"description": "teste",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31369408"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Full Name\",\n  \"email\": \"email@example.com\",\n  \"password\": \"secret123\",\n  \"password_confirmation\": \"secret123\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/register",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"register"
+					]
+				},
+				"description": "Registra um novo usuário e retorna token."
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\": \"email@example.com\",\n  \"password\": \"secret123\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/login",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"login"
+					]
+				},
+				"description": "Autentica usuário e retorna token."
+			},
+			"response": []
+		},
+		{
+			"name": "Logout",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{auth_token}}"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/api/logout",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"logout"
+					]
+				},
+				"description": "Destrói o token atual (logout)."
+			},
+			"response": []
+		},
+		{
+			"name": "Create Customer",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{auth_token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Alice\",\n  \"email\": \"alice@example.com\",\n  \"phone\": \"123-456\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/customers",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"customers"
+					]
+				},
+				"description": "Cria um novo cliente."
+			},
+			"response": []
+		},
+		{
+			"name": "List Customers",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "3|8pVQN1lRJotUQ3f4hYkKDMDWBrpABq548D1BSvYecf055cfb",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{auth_token}}"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/api/customers?name=&email=email@example.com",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"customers"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": ""
+						},
+						{
+							"key": "email",
+							"value": "email@example.com"
+						}
+					]
+				},
+				"description": "Lista clientes, filtrando por nome e email."
+			},
+			"response": []
+		},
+		{
+			"name": "Get Customer",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{auth_token}}"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/api/customers/{{customer_id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"customers",
+						"{{customer_id}}"
+					]
+				},
+				"description": "Busca um cliente pelo ID."
+			},
+			"response": []
+		},
+		{
+			"name": "Update Customer",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{auth_token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Alice B.\",\n  \"email\": \"alice.new@example.com\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/customers/{{customer_id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"customers",
+						"{{customer_id}}"
+					]
+				},
+				"description": "Atualiza cliente (envie apenas os campos a alterar)."
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Customer",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{auth_token}}"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/api/customers/{{customer_id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"customers",
+						"{{customer_id}}"
+					]
+				},
+				"description": "Deleta um cliente pelo ID."
+			},
+			"response": []
+		},
+		{
+			"name": "Create Sale",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{auth_token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"customer_id\": 1,\n  \"amount\": 123.45,\n  \"sold_at\": \"2025-04-30T14:30:00\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/sales",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"sales"
+					]
+				},
+				"description": "Cria uma nova venda."
+			},
+			"response": []
+		},
+		{
+			"name": "List Sales",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{auth_token}}"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/api/sales?customer_id={{customer_id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"sales"
+					],
+					"query": [
+						{
+							"key": "customer_id",
+							"value": "{{customer_id}}"
+						}
+					]
+				},
+				"description": "Lista vendas, filtrando opcionalmente por customer_id."
+			},
+			"response": []
+		},
+		{
+			"name": "Daily Sales",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{auth_token}}"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/api/stats/daily-sales",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"stats",
+						"daily-sales"
+					]
+				},
+				"description": "Total de vendas por dia."
+			},
+			"response": []
+		},
+		{
+			"name": "Top Customers",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{auth_token}}"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/api/stats/top-customers",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"stats",
+						"top-customers"
+					]
+				},
+				"description": "Top por volume, ticket médio e frequência."
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "https://50i4fvj6d4.execute-api.sa-east-1.amazonaws.com/prod/api"
+		},
+		{
+			"key": "auth_token",
+			"value": ""
+		},
+		{
+			"key": "customer_id",
+			"value": "1"
+		}
+	]
+}
